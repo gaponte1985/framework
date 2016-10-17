@@ -32,7 +32,7 @@ public class DummyTestB extends BaseTest{
 		// openBrowser(prop.getProperty("browser"));
 		//openBrowser(prop.getProperty("browser"));
 		openBrowser("firefox");
-		test.log(LogStatus.INFO, "Open the browser");
+		test.log(LogStatus.INFO, "Open the browser ");
 		
 		url("appurl");
 		test.log(LogStatus.INFO, "input the url");
@@ -50,6 +50,7 @@ public class DummyTestB extends BaseTest{
 	public void testB2() throws IOException{
 	
 		ExtentTest.endTest(test);
+		ExtentTest
 		ExtentTest.flush();
 
 	}
