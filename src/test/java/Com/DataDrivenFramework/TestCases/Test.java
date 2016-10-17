@@ -1,25 +1,19 @@
 package Com.DataDrivenFramework.TestCases;
 
-import java.io.FileInputStream;
+
+import java.io.FileNotFoundException;
+
 import java.util.Properties;
 
+import Com.DataDrivenFramework.TestCases.BaseTest;
+
 public class Test extends BaseTest {
-	public static Properties prop1;
-	public static void main (String args[])
+	private static Properties prop = BaseTest.getProperties();
+	public static void main (String args[]) throws FileNotFoundException
 	{
+	
 		System.out.println("hola");
-		System.out.println(prop1.getProperty("appurl"));
+		System.out.println(prop.getProperty("url"));
 	}
-	public void init(){
-		//init the prop file
-		if(prop1==null){
-			prop1=new Properties();
-			try {
-				FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "\\src\\test\\resources\\Properties.properties");
-				prop1.load(fs);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
+	
 }

@@ -1,16 +1,20 @@
 package Com.DataDrivenFramework.TestCases;
 
+import org.testng.Assert;
+import org.testng.AssertJUnit;
+
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import junit.framework.Assert;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,28 +24,52 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import com.opera.core.systems.OperaDriver;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
+import Com.DataDrivenFramework.Utilites.ExtentManager;
 
 public class BaseTest {
-	
+	//public static Properties prop;
 	public WebDriver driver;
-	public static Properties prop;
-	//public ExtentReports rep = ExtentManager.getInstance();
-	//public ExtentTest test;
+	public ExtentTest test;
+	
+	public static Properties prop = new Properties();
+	public static String Dire = System.getProperty("user.dir");
+   
+	
+	
+	public static Properties getProperties() {
 
-	public void init(){
-		//init the prop file
-		if(prop==null){
-			prop=new Properties();
-			try {
-				FileInputStream fs = new FileInputStream(System.getProperty("user.dir")+"//src//test//resources//Properties.properties");
-				prop.load(fs);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
+        FileInputStream fileInput;
+     
+          File file = new File(Dire +"/src/test/resources/Com/DataDrivenFramework/Utilites/Properties.properties");
+     
+        try {
+
+            fileInput = new FileInputStream(file);
+        } catch (IOException ioe) {
+            System.out.println(ioe.toString());
+            return null;
+        }
+
+        // load properties file
+        try {
+            prop.load(fileInput);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return prop;
+    }
+
 	public WebDriver openBrowser(String browserName) throws IOException{
 		
 			if (browserName.equalsIgnoreCase("firefox"))
@@ -54,11 +82,11 @@ public class BaseTest {
 				 
 				FirefoxProfile myprofile = profile.getProfile("aponte");
 				 
-				WebDriver driver = new FirefoxDriver(myprofile);
+				 driver = new FirefoxDriver(myprofile);
 				}
 			else if (browserName.equalsIgnoreCase("chrome"))
 			{
-				System.setProperty("webdriver.chrome.driver",".//Utilites//chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver","chromedriver");
 				driver= new ChromeDriver();
 			}
 			else if (browserName.equalsIgnoreCase("IE"))
@@ -69,10 +97,10 @@ public class BaseTest {
 			else if (browserName.equalsIgnoreCase("opera"))
 			{
 				System.setProperty("webdriver.opera.driver", ".//Utilites//operadriver.exe");
-		        WebDriver driver = new OperaDriver();
+		         driver = new OperaDriver();
 			}
 			else if (browserName.equalsIgnoreCase("html")){
-				HtmlUnitDriver driver = new HtmlUnitDriver();
+				 driver = new HtmlUnitDriver();
 			} else {
 			}
 			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -82,11 +110,23 @@ public class BaseTest {
 			return driver;
 			}
 		
-	public void navigate(String urlKey){
+	public void url(String urlKey){
 		
-		driver.get(prop.getProperty(urlKey));
+		driver.get(prop.getProperty("url"));
 		
 	}
+	
+public void close(String urlKey){
+		
+		driver.close();
+		
+	}
+
+public void quit(String urlKey){
+	
+	driver.quit();
+	
+}
 	
 	public void click(String locatorKey){
 		getElement(locatorKey).click();
@@ -167,7 +207,6 @@ public class BaseTest {
 		try {
 			FileUtils.copyFile(scrFile, new File(System.getProperty("user.dir")+"//screenshots//"+screenshotFile));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//put screenshot file in reports
@@ -177,7 +216,9 @@ public class BaseTest {
 	public void reportFailure(String string){
 		
 	}
-}
 
+
+
+}
 
 
