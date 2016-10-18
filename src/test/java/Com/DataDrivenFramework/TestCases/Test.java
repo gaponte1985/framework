@@ -14,6 +14,8 @@ public class Test extends BaseTest {
 	
 		System.out.println("hola");
 		System.out.println(prop.getProperty("url"));
+		System.out.println(prop.getProperty("mousemove_xpath"));
+		
 	}
 	
 }

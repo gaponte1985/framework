@@ -21,7 +21,7 @@ import Com.DataDrivenFramework.Utilites.ExtentManager;
 public class DummyTestB extends BaseTest{
 	private static Properties prop = BaseTest.getProperties();
 	private static ExtentReports extent;
-	ExtentReports rep = ExtentManager.getInstance();
+	private static ExtentReports rep = ExtentManager.getInstance();
 	ExtentTest test;
 	
 	@Test
@@ -29,10 +29,14 @@ public class DummyTestB extends BaseTest{
 		
 		 test = rep.startTest("Dummy TestB");
 		 test.log(LogStatus.INFO, "Starting the test");
-		// openBrowser(prop.getProperty("browser"));
-		//openBrowser(prop.getProperty("browser"));
+		 test.log(LogStatus.FAIL, "Failing the test");
+		 test.log(LogStatus.FAIL,  "Screenshot the test" + test.addScreenCapture(System.getProperty("user.dir") +"/screenshots/photo.png/"));
+		 
+		 
 		openBrowser("firefox");
 		test.log(LogStatus.INFO, "Open the browser ");
+		 test.log(LogStatus.FAIL,  "Screenshot the test" + test.addScreenCapture(System.getProperty("user.dir") +"/screenshots/photo.png"));
+
 		
 		url("appurl");
 		test.log(LogStatus.INFO, "input the url");
@@ -40,7 +44,7 @@ public class DummyTestB extends BaseTest{
 		test.log(LogStatus.INFO, "input the email");
 		click("button_xpath");
 		test.log(LogStatus.INFO, "click the button");
-		quit(null);
+		quit("appurl");
 	
 		
 	}
@@ -49,9 +53,8 @@ public class DummyTestB extends BaseTest{
 	@AfterTest
 	public void testB2() throws IOException{
 	
-		ExtentTest.endTest(test);
-		ExtentTest
-		ExtentTest.flush();
+		rep.endTest(test);
+		rep.flush();
 
 	}
 

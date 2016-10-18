@@ -12,7 +12,7 @@ public class DummyTestC extends BaseTest{
 	public void testC1() throws IOException{
 		
 		openBrowser("firefox");
-		navigate("http://www.gmail.com");
+		url("http://www.gmail.com");
 		type("email_path", "ing.aponte@gmail.com");
 		click("button_xpath");
 		

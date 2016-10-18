@@ -24,6 +24,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -43,7 +44,7 @@ public class BaseTest {
 	
 	public static Properties prop = new Properties();
 	public static String Dire = System.getProperty("user.dir");
-   
+	public Actions act;
 	
 	
 	public static Properties getProperties() {
@@ -178,6 +179,13 @@ public void quit(String urlKey){
 	
 	public void type(){
 		
+	}
+	
+	public WebElement mouseMove(String locatorKey){
+		act = new Actions(driver);
+	    WebElement icon = getElement(locatorKey);
+		act.dragAndDropBy(icon, 50, 0).build().perform();
+		return icon;
 	}
 
 	
