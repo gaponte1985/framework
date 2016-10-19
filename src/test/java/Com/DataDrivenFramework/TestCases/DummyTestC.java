@@ -1,10 +1,10 @@
 package Com.DataDrivenFramework.TestCases;
 
 import java.io.IOException;
-import Com.DataDrivenFramework.TestCases.BaseTest;
+
 import org.testng.annotations.Test;
-
-
+import Com.DataDrivenFramework.java.*;
+import Com.DataDrivenFramework.java.*;
 
 public class DummyTestC extends BaseTest{
 	

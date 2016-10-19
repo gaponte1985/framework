@@ -16,6 +16,7 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 import Com.DataDrivenFramework.Utilites.ExtentManager;
+import Com.DataDrivenFramework.java.*;
 
 
 
@@ -23,8 +24,6 @@ public class DummyCNNTest extends BaseTest {
 	
 	private static Properties prop = BaseTest.getProperties();
 	private static Properties url = BaseTest.getProperties();
-	private static ExtentReports extent;
-	private static ExtentReports rep = ExtentManager.getInstance();
 	ExtentTest test;
 	 
 	@BeforeTest

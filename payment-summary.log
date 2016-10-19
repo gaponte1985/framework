@@ -1,4 +1,6 @@
-DEBUG [Com.DataDrivenFramework.TestCases.HelpLog]: hello
+INFO  [Com.DataDrivenFramework.java.BaseTest]: hello world
 
-ERROR [Com.DataDrivenFramework.TestCases.HelpLog]: error
+INFO  [Com.DataDrivenFramework.TestCases.DummyTestB]: urlKey world
+
+INFO  [Com.DataDrivenFramework.java.BaseTest]: urlKey world
 

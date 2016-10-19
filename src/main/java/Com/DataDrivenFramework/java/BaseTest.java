@@ -1,4 +1,5 @@
-package Com.DataDrivenFramework.TestCases;
+package Com.DataDrivenFramework.java;
+
 
 import org.testng.Assert;
 import org.testng.AssertJUnit;
@@ -30,6 +31,7 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import com.opera.core.systems.OperaDriver;
+import com.relevantcodes.extentreports.DisplayOrder;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import com.relevantcodes.extentreports.ExtentReports;
@@ -39,10 +41,12 @@ import com.relevantcodes.extentreports.LogStatus;
 import Com.DataDrivenFramework.Utilites.ExtentManager;
 
 public class BaseTest {
-	//public static Properties prop;
+	
 	public WebDriver driver;
 	public ExtentTest test;
-	
+	public static ExtentReports screenshotFile;
+	public static ExtentReports extent;
+	public static ExtentReports rep = ExtentManager.getInstance();
 	public static Properties prop = new Properties();
 	public static String Dire = System.getProperty("user.dir");
 	public Actions act;
@@ -199,36 +203,74 @@ public void quit(String urlKey){
 	
 	/****************************************** Validations******************************************/
 	
-	public boolean verifyTtile(){
+	public boolean verifyTtile(String locatorKey, String ecpectedTextKey){
+
 		return false;
 		
 	}
-	public boolean isElementPresent(){
-		return false;
+	public boolean isElementPresent(String locatorKey){
+		
+		List<WebElement> elementList = null;
+		
+		if(locatorKey.endsWith("_id")){
+			elementList = driver.findElements(By.id(prop.getProperty(locatorKey)));
+		}
+		else if(locatorKey.endsWith("_name")){
+			elementList =	driver.findElements(By.name(prop.getProperty(locatorKey)));
+		}
+		else if(locatorKey.endsWith("_xpath")){
+			elementList = driver.findElements(By.xpath(prop.getProperty(locatorKey)));
+		}
+		else if(locatorKey.endsWith("_css")){
+			elementList= driver.findElements(By.cssSelector(prop.getProperty(locatorKey)));
+		}
+		else if(locatorKey.endsWith("_link_text")){
+			elementList= driver.findElements(By.linkText(prop.getProperty(locatorKey)));
+		}
+		
+		else {
+			reportFailure("Locator not correct"+locatorKey );
+			Assert.fail("Failed the test: " +locatorKey);
+		}
+		if(elementList.size()==0)
+		{
+			return true;
+		}
+		else 
+		return true;
 		
 	}
 	
-	public boolean isTextPresent(){
-		return false;
+	
+		public boolean verifyText(String locatorKey,String expectedTextKey){
+			String actualText=getElement(locatorKey).getText().trim();
+			String expectedText=prop.getProperty(expectedTextKey);
+			if(actualText.equals(expectedText)){
+				return true;
+				}else{ 
+					return false;
+			          }
 	}
 	
 	
 	/****************************************** Reporting *****************************************************/
 
-	public void takeScreenShoot(){
+	public void takeScreenShoot() throws IOException{
 		Date d=new Date();
 		String screenshotFile=d.toString().replace(":", "_").replace(" ", "_")+".png";
 		// store screenshot in that file
 		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(scrFile, new File(System.getProperty("user.dir")+"/screenshots/"+screenshotFile));
+			FileUtils.copyFile(scrFile, new File(System.getProperty("user.dir")+"//screenshots//"+screenshotFile ));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//put screenshot file in reports
-		test.log(LogStatus.INFO,"Screenshot-> "+ test.addScreenCapture(System.getProperty("user.dir")+"/screenshots/"+screenshotFile));
-		
+		System.out.println(System.getProperty("user.dir")+"/screenshots/"+screenshotFile);
+	//	test.log(LogStatus.PASS,"Screenshot the test" +test.addScreenCapture(System.getProperty("user.dir")+"/screenshots/"+screenshotFile));
+
+		return;
 	}
+	
 	public void reportFailure(String string){
 		
 	}
