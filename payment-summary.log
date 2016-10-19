@@ -1,0 +1,4 @@
+DEBUG [Com.DataDrivenFramework.TestCases.HelpLog]: hello
+
+ERROR [Com.DataDrivenFramework.TestCases.HelpLog]: error
+

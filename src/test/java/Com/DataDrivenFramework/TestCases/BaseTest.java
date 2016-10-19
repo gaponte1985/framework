@@ -13,6 +13,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -45,6 +46,7 @@ public class BaseTest {
 	public static Properties prop = new Properties();
 	public static String Dire = System.getProperty("user.dir");
 	public Actions act;
+	private static Logger log = Logger.getLogger(BaseTest.class.getName());
 	
 	
 	public static Properties getProperties() {
@@ -73,11 +75,13 @@ public class BaseTest {
 
 	public WebDriver openBrowser(String browserName) throws IOException{
 		
-			if (browserName.equalsIgnoreCase("firefox"))
+			if (prop.getProperty(browserName).equalsIgnoreCase("firefox"))
 			{
 				driver = new FirefoxDriver();
+				log.debug("firefox ");
+		    	log.info("hello world");
 			}
-			else if(browserName.equalsIgnoreCase("firefoxprofile")){
+			else if(prop.getProperty(browserName).equalsIgnoreCase("firefoxprofile")){
 				
 				ProfilesIni profile = new ProfilesIni();
 				 
@@ -85,22 +89,22 @@ public class BaseTest {
 				 
 				 driver = new FirefoxDriver(myprofile);
 				}
-			else if (browserName.equalsIgnoreCase("chrome"))
+			else if (prop.getProperty(browserName).equalsIgnoreCase("chrome"))
 			{
 				System.setProperty("webdriver.chrome.driver","chromedriver");
 				driver= new ChromeDriver();
 			}
-			else if (browserName.equalsIgnoreCase("IE"))
+			else if (prop.getProperty(browserName).equalsIgnoreCase("IE"))
 			{
 				System.setProperty("webdriver.chrome.driver",".//Utilites//IEDriverServer.exe");
 				driver= new InternetExplorerDriver();
 			}
-			else if (browserName.equalsIgnoreCase("opera"))
+			else if (prop.getProperty(browserName).equalsIgnoreCase("opera"))
 			{
 				System.setProperty("webdriver.opera.driver", ".//Utilites//operadriver.exe");
 		         driver = new OperaDriver();
 			}
-			else if (browserName.equalsIgnoreCase("html")){
+			else if (prop.getProperty(browserName).equalsIgnoreCase("html")){
 				 driver = new HtmlUnitDriver();
 			} else {
 			}
@@ -111,10 +115,14 @@ public class BaseTest {
 			return driver;
 			}
 		
-	public void url(String urlKey){
+	public String url(String urlKey){
 		
-		driver.get(prop.getProperty("url"));
+		driver.get(prop.getProperty(urlKey));
+		log.debug("urlKey ");
+    	log.info("urlKey world");
+		return urlKey;
 		
+	
 	}
 	
 public void close(String urlKey){
@@ -213,17 +221,19 @@ public void quit(String urlKey){
 		// store screenshot in that file
 		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(scrFile, new File(System.getProperty("user.dir")+"//screenshots//"+screenshotFile));
+			FileUtils.copyFile(scrFile, new File(System.getProperty("user.dir")+"/screenshots/"+screenshotFile));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		//put screenshot file in reports
-		test.log(LogStatus.INFO,"Screenshot-> "+ test.addScreenCapture(System.getProperty("user.dir")+"//screenshots//"+screenshotFile));
+		test.log(LogStatus.INFO,"Screenshot-> "+ test.addScreenCapture(System.getProperty("user.dir")+"/screenshots/"+screenshotFile));
 		
 	}
 	public void reportFailure(String string){
 		
 	}
+
+
 
 
 
