@@ -5,6 +5,7 @@
     <classes>
       <class name="Com.DataDrivenFramework.TestCases.DummyTestB">
         <methods>
+          <include name="testB2"/>
           <include name="testB1"/>
         </methods>
       </class> <!-- Com.DataDrivenFramework.TestCases.DummyTestB -->

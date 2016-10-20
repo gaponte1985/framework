@@ -1,0 +1,6 @@
+INFO  [Com.DataDrivenFramework.java.BaseTest]: hello world
+
+INFO  [Com.DataDrivenFramework.TestCases.DummyTestB]: urlKey world
+
+INFO  [Com.DataDrivenFramework.java.BaseTest]: urlKey world
+
