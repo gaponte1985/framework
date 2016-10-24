@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -118,7 +121,25 @@ public class BaseTest {
 			
 			return driver;
 			}
-		
+	
+	public String navigate(String urlKey)
+	{
+		driver.navigate().to(prop.getProperty(urlKey));
+		log.debug("urlKey ");
+    	log.info("urlKey world");
+		return urlKey;
+	}
+	
+	public String navigateBack(String urlKey)
+	{
+		driver.navigate().back();
+		return navigateBack(null);
+	}
+	public String navigateFoward(String urlKey)
+	{
+		driver.navigate().forward();
+		return navigateFoward(null);
+	}
 	public String url(String urlKey){
 		
 		driver.get(prop.getProperty(urlKey));
@@ -128,14 +149,11 @@ public class BaseTest {
 		
 	
 	}
-	
-public void close(String urlKey){
+	public void close(String urlKey){
 		
 		driver.close();
-		
-	}
-
-public void quit(String urlKey){
+		}
+	public void quit(String urlKey){
 	
 	driver.quit();
 	
@@ -242,7 +260,7 @@ public void quit(String urlKey){
 	}
 	
 	
-		public boolean verifyText(String locatorKey,String expectedTextKey){
+	public boolean verifyText(String locatorKey,String expectedTextKey){
 			String actualText=getElement(locatorKey).getText().trim();
 			String expectedText=prop.getProperty(expectedTextKey);
 			if(actualText.equals(expectedText)){
@@ -251,8 +269,16 @@ public void quit(String urlKey){
 					return false;
 			          }
 	}
+		
 	
+		
 	
+		
+		
+		
+		
+		
+		
 	/****************************************** Reporting *****************************************************/
 
 	public void takeScreenShoot() throws IOException{
@@ -271,8 +297,14 @@ public void quit(String urlKey){
 		return;
 	}
 	
-	public void reportFailure(String string){
-		
+	public void reportPass(String msg){
+		test.log(LogStatus.PASS, msg);
+	}
+	
+	public void reportFailure(String msg) throws IOException{
+		test.log(LogStatus.FAIL, msg);
+		takeScreenShoot();
+		Assert.fail(msg);
 	}
 
 

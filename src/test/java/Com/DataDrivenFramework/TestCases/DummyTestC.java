@@ -11,7 +11,7 @@ public class DummyTestC extends BaseTest{
 	@Test
 	public void testC1() throws IOException{
 		
-		openBrowser("firefox");
+		openBrowser("chrome");
 		url("http://www.gmail.com");
 		type("email_path", "ing.aponte@gmail.com");
 		click("button_xpath");

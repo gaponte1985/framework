@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="htmlunit-driver-standalone-2.211">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/test/resources/Com/DataDrivenFramework/Utilites/htmlunit-driver-standalone-2.21.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

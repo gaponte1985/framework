@@ -18,7 +18,7 @@ import Com.DataDrivenFramework.Utilites.ExtentManager;
 public class DummyTestB extends BaseTest{
 	private static Properties prop = BaseTest.getProperties();
 	private static ExtentReports screenshotFile;
-	//private static ExtentReports rep = ExtentManager.getInstance();
+	private static ExtentReports rep = ExtentManager.getInstance();
 	private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(DummyTestB.class.getName());
 		
 			ExtentTest test;
