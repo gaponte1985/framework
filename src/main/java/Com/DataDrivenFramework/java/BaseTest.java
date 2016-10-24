@@ -159,20 +159,20 @@ public class BaseTest {
 	
 }
 	
-	public void click(String locatorKey){
+	public void click(String locatorKey) throws IOException{
 		getElement(locatorKey).click();
 		
 	}
 	
-	public void type(String locatorKey,String Data){
+	public void type(String locatorKey,String Data) throws IOException{
 		getElement(locatorKey).sendKeys(Data);
 		}
 	
-	public void clear(String locatorKey,String Data){
+	public void clear(String locatorKey,String Data) throws IOException{
 		getElement(locatorKey).clear();
 		}
 	//This methods is the one that will send a click or send keys or clear
-	public WebElement getElement(String locatorKey){
+	public WebElement getElement(String locatorKey) throws IOException{
 		WebElement e= null;
 		
 		try{
@@ -211,7 +211,7 @@ public class BaseTest {
 		
 	}
 	
-	public WebElement mouseMove(String locatorKey){
+	public WebElement mouseMove(String locatorKey) throws IOException{
 		act = new Actions(driver);
 	    WebElement icon = getElement(locatorKey);
 		act.dragAndDropBy(icon, 50, 0).build().perform();
@@ -226,7 +226,7 @@ public class BaseTest {
 		return false;
 		
 	}
-	public boolean isElementPresent(String locatorKey){
+	public boolean isElementPresent(String locatorKey) throws IOException{
 		
 		List<WebElement> elementList = null;
 		
@@ -260,7 +260,7 @@ public class BaseTest {
 	}
 	
 	
-	public boolean verifyText(String locatorKey,String expectedTextKey){
+	public boolean verifyText(String locatorKey,String expectedTextKey) throws IOException{
 			String actualText=getElement(locatorKey).getText().trim();
 			String expectedText=prop.getProperty(expectedTextKey);
 			if(actualText.equals(expectedText)){
