@@ -32,21 +32,23 @@ public class DummyTestB extends BaseTest{
 		 //test.log(LogStatus.FAIL, "Failing the test");
 	     //test.log(LogStatus.FAIL,  "Screenshot the test" + test.addScreenCapture(System.getProperty("user.dir") +"/screenshots/photo.png/"));
 		 
-		 
-		openBrowser("browser");
-		log.debug("urlKey ");
+		 openBrowser("browser");
+		 SSLCertificateHandle("browser");
+		log.debug("urlKey");
     	log.info("urlKey world");
 		test.log(LogStatus.INFO, "Open the browser ");
 		//test.log(LogStatus.FAIL,  "Screenshot the test" + test.addScreenCapture(System.getProperty("user.dir")+"/screenshots/photo.png"));
 		
+		url("url0");
+		//url("url");
 		
-		url("url");
-		takeScreenShoot();
+		
 		test.log(LogStatus.INFO, "input the url");
-		type("email_css","ing.aponte@gmail.com");
+	//	type("email_css","ing.aponte@gmail.com");
 		test.log(LogStatus.INFO, "input the email");
-		click("button_xpath");
+	//	click("button_xpath");
 		test.log(LogStatus.INFO, "click the button");
+		takeScreenShoot();
 		quit("appurl");		
 	}
 	@AfterTest

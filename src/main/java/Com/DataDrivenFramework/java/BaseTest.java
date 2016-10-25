@@ -12,13 +12,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -30,6 +34,9 @@ import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
@@ -269,14 +276,7 @@ public class BaseTest {
 					return false;
 			          }
 	}
-		
-	
-		
-	
-		
-		
-		
-		
+				
 		
 		
 	/****************************************** Reporting *****************************************************/
@@ -288,11 +288,14 @@ public class BaseTest {
 		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		try {
 			FileUtils.copyFile(scrFile, new File(System.getProperty("user.dir")+"//screenshots//"+screenshotFile ));
+			String image=System.getProperty("user.dir")+"/screenshots/"+screenshotFile;
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		System.out.println(System.getProperty("user.dir")+"/screenshots/"+screenshotFile);
-	//	test.log(LogStatus.PASS,"Screenshot the test" +test.addScreenCapture(System.getProperty("user.dir")+"/screenshots/"+screenshotFile));
+     //   test.log(LogStatus.PASS, ""+test.addScreenCapture(System.getProperty("user.dir")+"/screenshots/"+screenshotFile ));
+	        test.log(LogStatus.PASS, ""+test.addScreenCapture("/Users/aponte/Documents/workspace/TheJamStopDDF/Com.DataDrivenFramework/screenshots/"+screenshotFile ));
 
 		return;
 	}
@@ -306,11 +309,75 @@ public class BaseTest {
 		takeScreenShoot();
 		Assert.fail(msg);
 	}
+	/****************************************** Windows Handles *****************************************************/
+	protected WebDriver handlePopups(String browserName) throws IOException{
+
+	Set<String> windowIds = driver.getWindowHandles();
+	System.out.println("Total windows opened -> "+ windowIds.size());
+	Iterator<String> it = windowIds.iterator();
+	System.out.println(it.next());
+	System.out.println("-------------------------");
+	navigate(browserName);
+	//popup
+	windowIds = driver.getWindowHandles();
+	System.out.println("Total windows opened -> "+ windowIds.size());
+	if(windowIds.size()>1)
+	{
+	it = windowIds.iterator();
+	String mainWindow = it.next();
+	String popupWindow =it.next();
+	System.out.println(mainWindow);
+	System.out.println(popupWindow);
+	driver.switchTo().window(popupWindow);
+	driver.switchTo().activeElement();//IE
+	driver.close(); // closes the window on which focus is there
+	return driver.switchTo().window(mainWindow);
+	}
+	else 
+	{
+		return driver;
+	}
+	}
+	
+	
+	protected WebDriver handleAlert(String browserName) throws IOException {
+		Alert alert=driver.switchTo().alert();
+		System.out.println(alert.getText());
+		alert.accept();
+		return driver;
+	    }
+	
 
 
-
-
+    protected WebDriver SSLCertificateHandle(String browsername) throws IOException{
+    	
+    	if((browsername).equalsIgnoreCase("firefox")){
+    		
+    		FirefoxProfile profile=new FirefoxProfile();
+    		profile.setAcceptUntrustedCertificates(true);
+    		WebDriver driver=new FirefoxDriver(profile);
+    	}
+    	if((browsername).equalsIgnoreCase("IE")){
+    		DesiredCapabilities cap=DesiredCapabilities.internetExplorer();
+    		cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+    		System.setProperty("webdriver.ie.driver","IE driver path");
+    		WebDriver driver=new InternetExplorerDriver(cap);
+    	}
+    	if((browsername).equalsIgnoreCase("Chrome")){
+    		DesiredCapabilities cap=DesiredCapabilities.chrome();
+    		cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+    		System.setProperty("webdriver.chrome.driver","chromedriver");
+    	    WebDriver driver=new ChromeDriver(cap);
+    	}
+    	if((browsername).equalsIgnoreCase("Safari")){
+    		
+    		DesiredCapabilities cap=DesiredCapabilities.safari();
+    		cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+    		System.setProperty("webdriver.safari.driver","Safari driver path");
+    	    WebDriver driver=new SafariDriver(cap);
+    	}
+    		return driver;
+    } 
 
 }
-
 

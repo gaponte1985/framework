@@ -102,7 +102,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="Com.DataDrivenFramework.TestCases.DummyTestC" hash-for-method="testC1">testC1</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="Com.DataDrivenFramework.TestCases.DummyTestB" hash-for-method="testB1">testB1</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -120,17 +120,17 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">Com.DataDrivenFramework.TestCases.DummyTestC</span>
+              <span class="class-name">Com.DataDrivenFramework.TestCases.DummyTestB</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testC1">
-                  </a> <!-- testC1 -->
-                  <span class="method-name">testC1</span>
+                  <a name="testB1">
+                  </a> <!-- testB1 -->
+                  <span class="method-name">testB1</span>
                   <div class="stack-trace">java.lang.NullPointerException
-	at Com.DataDrivenFramework.java.BaseTest.openBrowser(BaseTest.java:85)
-	at Com.DataDrivenFramework.TestCases.DummyTestC.testC1(DummyTestC.java:14)
+	at Com.DataDrivenFramework.java.BaseTest.takeScreenShoot(BaseTest.java:298)
+	at Com.DataDrivenFramework.TestCases.DummyTestB.testB1(DummyTestB.java:51)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -165,7 +165,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/private/var/folders/n3/1fy702_j52q8dzmkjjpbmqqm0000gn/T/testng-eclipse--1942629229/testng-customsuite.xml</span>
+            <span class="header-content">/private/var/folders/n3/1fy702_j52q8dzmkjjpbmqqm0000gn/T/testng-eclipse-1437205936/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -174,7 +174,7 @@
 &lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Default suite&quot;&gt;
   &lt;test verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;Com.DataDrivenFramework.TestCases.DummyTestC&quot;/&gt;
+      &lt;class name=&quot;Com.DataDrivenFramework.TestCases.DummyTestB&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -216,14 +216,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testC1')
-data.setCell(0, 2, 'Com.DataDrivenFramework.TestCases.DummyTestC')
-data.setCell(0, 3, 12);
+data.setCell(0, 1, 'testB1')
+data.setCell(0, 2, 'Com.DataDrivenFramework.TestCases.DummyTestB')
+data.setCell(0, 3, 9191);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 12 ms</span>
+              <span class="suite-total-time">Total running time: 9 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -249,13 +249,17 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">Com.DataDrivenFramework.TestCases.DummyTestC</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">Com.DataDrivenFramework.TestCases.DummyTestB</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">testC1</span>
+                <span class="method-name">testB1</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-test after">
+                <span class="method-name">testB2</span>
+                <span class="method-start">9197 ms</span>
+              </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

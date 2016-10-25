@@ -2,17 +2,17 @@
 <testng-results skipped="0" failed="1" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="149" started-at="2016-10-21T19:27:25Z" finished-at="2016-10-21T19:27:25Z">
+  <suite name="Default suite" duration-ms="9543" started-at="2016-10-25T04:46:41Z" finished-at="2016-10-25T04:46:51Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="149" started-at="2016-10-21T19:27:25Z" finished-at="2016-10-21T19:27:25Z">
-      <class name="Com.DataDrivenFramework.TestCases.DummyTestC">
-        <test-method status="FAIL" signature="testC1()[pri:0, instance:Com.DataDrivenFramework.TestCases.DummyTestC@78b1cc93]" name="testC1" duration-ms="12" started-at="2016-10-21T15:27:25Z" finished-at="2016-10-21T15:27:25Z">
+    <test name="Default test" duration-ms="9543" started-at="2016-10-25T04:46:41Z" finished-at="2016-10-25T04:46:51Z">
+      <class name="Com.DataDrivenFramework.TestCases.DummyTestB">
+        <test-method status="FAIL" signature="testB1()[pri:0, instance:Com.DataDrivenFramework.TestCases.DummyTestB@13acb0d1]" name="testB1" duration-ms="9191" started-at="2016-10-25T00:46:41Z" finished-at="2016-10-25T00:46:51Z">
           <exception class="java.lang.NullPointerException">
             <full-stacktrace>
               <![CDATA[java.lang.NullPointerException
-	at Com.DataDrivenFramework.java.BaseTest.openBrowser(BaseTest.java:85)
-	at Com.DataDrivenFramework.TestCases.DummyTestC.testC1(DummyTestC.java:14)
+	at Com.DataDrivenFramework.java.BaseTest.takeScreenShoot(BaseTest.java:298)
+	at Com.DataDrivenFramework.TestCases.DummyTestB.testB1(DummyTestB.java:51)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -43,8 +43,12 @@
           </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testC1 -->
-      </class> <!-- Com.DataDrivenFramework.TestCases.DummyTestC -->
+        </test-method> <!-- testB1 -->
+        <test-method status="PASS" signature="testB2()[pri:0, instance:Com.DataDrivenFramework.TestCases.DummyTestB@13acb0d1]" name="testB2" is-config="true" duration-ms="330" started-at="2016-10-25T00:46:51Z" finished-at="2016-10-25T00:46:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testB2 -->
+      </class> <!-- Com.DataDrivenFramework.TestCases.DummyTestB -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
