@@ -18,7 +18,7 @@ import java.util.Calendar;
 
 
 public class Xls_Reader {
-	public static String filename = System.getProperty(".//src//test//java//Com//TheJamStopDDF//TestCases");
+	public static String filename = System.getProperty("user.dir")+"\\src\\config\\testcases\\Data.xlsx";
 	public  String path;
 	public  FileInputStream fis = null;
 	public  FileOutputStream fileOut =null;

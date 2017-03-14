@@ -31,8 +31,7 @@ public class DummyCNNTest extends BaseTest {
 		test = rep.startTest("Cnn");
 		openBrowser("browser");
 		 test.log(LogStatus.INFO, "Starting the test");
-		// test.log(LogStatus.FAIL, "Failing the test");
-		// test.log(LogStatus.FAIL,  "Screenshot the test" + test.addScreenCapture(System.getProperty("user.dir") +"/screenshots/photo.png/"));
+		 test.log(LogStatus.FAIL, "Failing the test");
 	}
 	
 	@Test 

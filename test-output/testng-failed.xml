@@ -3,12 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Com.DataDrivenFramework.TestCases.DummyTestB">
+      <class name="Com.DataDrivenFramework.TestCases.DummyCNNTest">
         <methods>
-          <include name="testB2"/>
-          <include name="testB1"/>
+          <include name="start"/>
+          <include name="before"/>
+          <include name="end"/>
         </methods>
-      </class> <!-- Com.DataDrivenFramework.TestCases.DummyTestB -->
+      </class> <!-- Com.DataDrivenFramework.TestCases.DummyCNNTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

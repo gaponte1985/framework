@@ -1,0 +1,21 @@
+              {
+
+    "user1": {
+        "name": "Jamse",
+        "email": "main_window@mail.com",
+        "age": 50,
+
+    },
+    "user2": {
+         "name": "Bond",
+        "email": "aston@mail.com",
+        "age": 49,
+    },
+    "user3": {
+        "name": "Weider",
+        "email": "starwars@mail.com",
+        "age": 500,
+    }
+}
+
+    

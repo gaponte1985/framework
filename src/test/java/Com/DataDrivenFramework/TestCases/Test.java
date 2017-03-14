@@ -9,25 +9,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+
 import Com.DataDrivenFramework.TestCases.*;
 import Com.DataDrivenFramework.java.*;
 
-public class Test extends BaseDB {
+public class Test extends BaseDB throws IOException, SQLException {
 	
-	private static Connection conn = BaseDB.conn;
-	private static Properties prop = BaseTest.getProperties();
-	
-	
+	private static final BaseDB BaseBD = null;
+	private static Connection conn = BaseDB.connectionDB();
+	private static Properties prop = BaseDB.prop;
+	private static Connection url = BaseDB.connectionDB();
+	private static Connection username = BaseDB.connectionDB();
+	private static Connection password = BaseDB.connectionDB();
+	private static Connection dbName = BaseDB.connectionDB();
 	public static void main(String[] args) throws IOException, SQLException{
 	
 		
-		//connectionDB("");
+		connectionDB();
 		try{ 
 			
-		    connectionDB("mysql");
+		   
 			//created a obeject 
-			BaseDB.Class.forName(BaseBD.driver).newInstance();
-			conn = DriverManager.getConnection(url+dbName, username, password);
+			BaseDB.Class.forName(BaseDB.driver).newInstance();
+			conn = DriverManager.getConnection(url, username, password);
 			System.out.println(conn.isClosed());
 			Statement st =conn.createStatement();
 			ResultSet rs = st.executeQuery("select * from city");

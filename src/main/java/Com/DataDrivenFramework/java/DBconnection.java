@@ -1,23 +1,29 @@
 package Com.DataDrivenFramework.java;
 
 import java.sql.*;
-public class DBconnection {
 
-	public static void main(String[] args) throws SQLException
+import org.openqa.selenium.WebDriver;
+public class DBconnection extends Constructor {
+
+	
+	public static void main (String [] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
 	{
-		Connection conn = null;
-		String url ="jdbc:mysql://192.168.1.12:3306";
-		String driver = "com.mysql.cj.jdbc.Driver";
-		String dbName = "/world";
-		String username = "root";
-		String password ="1234";
-		//connect to DB
+		conectar();
+		System.out.println(url+ " " +username+ " " +password+ " " +dbname+ " " +url+ "" +conn );
+	}
+	
+	
+	
+	
+	public static void main1111(String[] args, Object tabla) throws SQLException
+	{
 		
+		//connectionDB();
 		try{
-			Class.forName(driver).newInstance(); //created a obeject 
-			conn = DriverManager.getConnection(url+dbName, username, password);
-			System.out.println(conn.isClosed());
-			Statement st =conn.createStatement();
+		//	Class.forName(driverdb); //created a obeject 
+			System.out.println(url);
+			
+			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery("select * from city");
 			while(rs.next()){
 				
@@ -27,10 +33,12 @@ public class DBconnection {
 		{
 			e.printStackTrace();
 		}finally{
-			if((conn!=null) && (!conn.isClosed()))
+			if((conn!=null) && (!((Connection) conn).isClosed()))
 			{
-				conn.close();
+				((WebDriver) conn).close();
 			}
 		}
 	}
 }
+	
+
